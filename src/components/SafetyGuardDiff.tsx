@@ -24,7 +24,45 @@ const SafetyGuardDiff: React.FC = () => {
     // "Report View": Shows the final report the user sees.
     // "Safety View": Compares Input (Original) vs Output (Redacted) to show WHAT acts.
 
-    const finalContent = userRole === 'EQUIPMENT_ENG' ? safetyReport.originalContent : safetyReport.redactedContent;
+    // State for dynamic content
+    const [displayContent, setDisplayContent] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    // Effect to handle content switching and API calls
+    React.useEffect(() => {
+        if (!defect) return;
+
+        const originalText = defect.safetyReport.originalContent;
+
+        if (userRole === 'EQUIPMENT_ENG') {
+            setDisplayContent(originalText);
+        } else {
+            // Check if backend is available and fetch
+            setLoading(true);
+            setDisplayContent("🛡️ Connecting to Safety Guard (Llama-3-Nemotron)...");
+
+            fetch('/api/redact-report', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: originalText, role: userRole }),
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.redacted_text) {
+                        setDisplayContent(data.redacted_text);
+                    } else {
+                        setDisplayContent("⚠️ Guard Service Unavailable. Showing redacted fallback.\n\n" + defect.safetyReport.redactedContent);
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    setDisplayContent("⚠️ Connection Error. Using offline fallback.\n\n" + defect.safetyReport.redactedContent);
+                })
+                .finally(() => setLoading(false));
+        }
+    }, [userRole, defect]);
+
+    const finalContent = displayContent;
 
     return (
         <div style={{ padding: '16px', height: '100%', display: 'flex', flexDirection: 'column' }}>
