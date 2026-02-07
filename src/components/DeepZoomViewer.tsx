@@ -135,7 +135,7 @@ const DeepZoomViewer: React.FC = () => {
                                         <img
                                             src={defect.imageUrl}
                                             alt={defect.name}
-                                            style={{ maxWidth: '100%', maxHeight: '80vh', display: 'block', border: '1px solid #444' }}
+                                            style={{ width: '800px', height: '600px', display: 'block', border: '1px solid #444', objectFit: 'cover' }}
                                             onLoad={() => setLoading(false)}
                                             onError={() => { setLoading(false); setImageError(true); }}
                                         />
