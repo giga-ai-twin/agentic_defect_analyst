@@ -1,11 +1,12 @@
 import type { Defect } from '../types';
+import { generateSemImage } from '../utils/imageGenerator';
 
 export const MOCK_DEFECTS: Defect[] = [
     {
         id: 'DEF-20260206-001',
         name: 'CMP Scratch - Wafer 42',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Microchip_surface_scratch_SEM.jpg', // Placeholder SEM
-        thumbnailUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Microchip_surface_scratch_SEM.jpg',
+        imageUrl: generateSemImage('scratch'),
+        thumbnailUrl: generateSemImage('scratch'),
         detectedAt: '2026-02-06T08:30:00Z',
         status: 'Reviewing',
         cosmosAnalysis: {
@@ -16,9 +17,9 @@ export const MOCK_DEFECTS: Defect[] = [
                 {
                     id: 'bbox-1',
                     x: 200,
-                    y: 300,
+                    y: 100, // Adjusted to match SVG path
                     width: 400,
-                    height: 150,
+                    height: 400,
                     label: 'Scratch Core',
                     color: '#ff0000',
                 },
@@ -70,8 +71,8 @@ The scratch is likely caused by agglomerated slurry particles due to process par
     {
         id: 'DEF-20260206-002',
         name: 'Unknown Particle - Edge',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Pollen_Grain_SEM.jpg/800px-Pollen_Grain_SEM.jpg', // Placeholder Particle
-        thumbnailUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Pollen_Grain_SEM.jpg/800px-Pollen_Grain_SEM.jpg',
+        imageUrl: generateSemImage('particle'),
+        thumbnailUrl: generateSemImage('particle'),
         detectedAt: '2026-02-06T09:15:00Z',
         status: 'New',
         cosmosAnalysis: {
@@ -81,10 +82,10 @@ The scratch is likely caused by agglomerated slurry particles due to process par
             boundingBoxes: [
                 {
                     id: 'bbox-2',
-                    x: 300,
-                    y: 200,
-                    width: 200,
-                    height: 200,
+                    x: 350, // Adjusted to match SVG circle
+                    y: 250,
+                    width: 100,
+                    height: 100,
                     label: 'Particle',
                     color: '#ffff00',
                 },

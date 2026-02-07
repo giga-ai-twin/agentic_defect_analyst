@@ -51,7 +51,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, rightPanel }) => {
                 </div>
             </Header>
 
-            <Layout>
+            <Layout hasSider style={{ height: 'calc(100vh - 64px)' }}>
                 {/* Left Sidebar: Defect List */}
                 <Sider
                     width={300}
@@ -110,7 +110,9 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, rightPanel }) => {
                     background: '#f0f2f5',
                     display: 'flex',
                     flexDirection: 'column',
-                    overflow: 'hidden'
+                    overflow: 'hidden',
+                    flex: 1, // Ensure content expands to fill space
+                    minWidth: 0 // Prevent flexbox overflow issues
                 }}>
                     {children}
                 </Content>
