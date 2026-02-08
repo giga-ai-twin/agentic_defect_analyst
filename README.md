@@ -24,6 +24,16 @@ This project is strictly a **Proof of Concept (PoC)** designed to demonstrate so
 
 ---
 
+## 📸 Key Features & Demo
+
+*   **SEM Deep Zoom**: Inspect at the nanometer scale with simulated electron-beam artifacts.
+*   **Live AI Redaction**: Watch the report transform in real-time when switching roles, powered by Llama 3.
+*   **Synthetic Data Engine**: Realistic wafer defect generation for zero-dependency testing.
+
+![defect_analysis_safety_agentv2](https://github.com/user-attachments/assets/4574176f-e973-46a8-8a1a-d91dbee4fd0f)
+
+---
+
 ## 🏗️ Use Case & Scenario
 
 In a modern semiconductor Lab, data security is as critical as yield. This project simulates a real-world scenario where high-resolution **SEM (Scanning Electron Microscope)** defect images are analyzed by AI, but the sensitive process parameters must be protected based on the user's role.
@@ -187,14 +197,6 @@ npm install
 npm run dev
 ```
 *Open `http://localhost:5173` to view the agent.*
-
----
-
-## 📸 Key Features & Screenshots
-
-*   **SEM Deep Zoom**: Inspect at the nanometer scale with simulated electron-beam artifacts.
-*   **Live AI Redaction**: Watch the report transform in real-time when switching roles, powered by Llama 3.
-*   **Synthetic Data Engine**: Realistic wafer defect generation for zero-dependency testing.
 
 ---
 
