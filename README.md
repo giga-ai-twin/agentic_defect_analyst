@@ -25,18 +25,27 @@ This project demonstrates a modern, high-performance dashboard for analyzing waf
 
 ## 📦 How to Run
 
-1.  **Install Dependencies**:
+### 1. Backend (Python/FastAPI)
+*   **Install Python Dependencies**:
+    ```bash
+    pip install fastapi uvicorn python-multipart requests python-dotenv httpx
+    ```
+*   **Start Backend Server**:
+    ```bash
+    python -m uvicorn backend.main:app --reload --port 8000
+    ```
+    *The backend will run at `http://localhost:8000`*
+
+### 2. Frontend (React/Vite)
+*   **Install Node Dependencies**:
     ```bash
     npm install
     ```
-2.  **Start Development Server**:
+*   **Start Frontend Dev Server**:
     ```bash
     npm run dev
     ```
-3.  **Build for Production**:
-    ```bash
-    npm run build
-    ```
+    *Open `http://localhost:5173` in your browser.*
 
 ---
 

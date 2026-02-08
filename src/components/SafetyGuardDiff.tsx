@@ -46,17 +46,23 @@ const SafetyGuardDiff: React.FC = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ text: originalText, role: userRole }),
             })
-                .then(res => res.json())
+                .then(res => {
+                    if (!res.ok) throw new Error(`HTTP Error ${res.status}`);
+                    return res.json();
+                })
                 .then(data => {
                     if (data.redacted_text) {
                         setDisplayContent(data.redacted_text);
                     } else {
-                        setDisplayContent("⚠️ Guard Service Unavailable. Showing redacted fallback.\n\n" + defect.safetyReport.redactedContent);
+                        // Debugging: Show exactly what the backend returned
+                        console.error("Backend Error Data:", data);
+                        const debugInfo = JSON.stringify(data, null, 2);
+                        setDisplayContent(`⚠️ Backend Error. Response:\n${debugInfo}\n\nRunning Fallback:\n` + defect.safetyReport.redactedContent);
                     }
                 })
                 .catch(err => {
                     console.error(err);
-                    setDisplayContent("⚠️ Connection Error. Using offline fallback.\n\n" + defect.safetyReport.redactedContent);
+                    setDisplayContent(`⚠️ Connection Failed: ${err.message}\n\nUsing offline fallback.\n` + defect.safetyReport.redactedContent);
                 })
                 .finally(() => setLoading(false));
         }
