@@ -1,4 +1,4 @@
-# 🔬 Visual Defect Analysis Agent (VDA-Agent)
+# 🔬 Defect Analysis & Safety Agent (DASA)
 
 [![NVIDIA NIM](https://img.shields.io/badge/Powered%20By-NVIDIA%20NIM-76B900?style=for-the-badge&logo=nvidia)](https://build.nvidia.com)
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
@@ -195,28 +195,20 @@ npm run dev
 agentic_defect_analyst/
 ├── backend/                  # Python Backend (AI Orchestrator)
 │   ├── main.py               # FastAPI entry point & NVIDIA NIM integration logic
-│   └── __pycache__/          # Python bytecode cache
 ├── src/                      # React Frontend Source Code
 │   ├── assets/               # Static assets (images, svg)
-│   ├── components/           # Reusable UI Components
-│   │   ├── DeepZoomViewer.tsx    # High-res SEM image viewer (OpenSeadragon wrapper)
-│   │   ├── MainLayout.tsx        # App shell layout (Sidebar + Header)
-│   │   ├── SafetyGuardDiff.tsx   # Side-by-side comparison of Redacted vs. Raw reports
-│   │   └── SimpleDiffViewer.tsx  # Utility for text diff visualization
+│   ├── components/           # UI Components (Deep Zoom, Layout, Safety Guard)
 │   ├── data/                 # Mock data for offline demo mode
-│   │   └── mockData.ts       # Simulated AI responses & defect telemetry
-│   ├── store/                # State Management
-│   │   └── useAppStore.ts    # Global state (Zustand) for User Role & Analysis Results
+│   ├── store/                # State Management (Zustand)
 │   ├── types/                # TypeScript Type Definitions
-│   │   └── index.ts          # Shared interfaces (AnalysisResult, DefectImage)
-│   ├── utils/                # Helper Functions
-│   │   └── imageGenerator.ts # Generates dummy SEM images for demo purposes
+│   ├── utils/                # Helper Functions (Image Synthesis)
 │   ├── App.tsx               # Main Application Component
-│   ├── main.tsx              # React Entry Point
-│   └── index.css             # Global Styles (Tailwind directives if used)
-├── public/                   # Public static files
-├── package.json              # Frontend dependencies & scripts
+│   └── main.tsx              # React Entry Point
+├── .env.example              # Template for Environment Variables
+├── .gitignore                # Git ignore rules
+├── LICENSE                   # MIT License
+├── package.json              # Frontend dependencies
 ├── tsconfig.json             # TypeScript configuration
-├── vite.config.ts            # Vite build & proxy configuration
+├── vite.config.ts            # Vite proxy configuration
 └── README.md                 # Project documentation
 ```

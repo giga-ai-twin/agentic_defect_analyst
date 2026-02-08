@@ -76,9 +76,14 @@ async def redact_report(request: RedactionRequest):
     
     prompt = f"""
     You are a Data Security Officer in a semiconductor fab.
-    Redact any machine-specific parameters (pressure, flow rate, recipe names) from the following text.
+    Redact any machine-specific parameters (Machine ID, pressure, flow rate, recipe names) from the following text.
     Replace redacted values with [REDACTED].
-    Do not change the structure or other words. Only redact sensitive numbers and recipe IDs.
+    
+    IMPORTANT: 
+    1. Do not change the structure or other words. 
+    2. Only redact sensitive machine IDs, recipe names, and process numbers.
+    3. DO NOT add any new markdown headers (like # or ##) or bold symbols if they were not in the original text.
+    4. PRESERVE all original line breaks and indentation exactly as in the input text. Do not merge lines.
     
     Text:
     {request.text}

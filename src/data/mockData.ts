@@ -30,7 +30,9 @@ export const MOCK_DEFECTS: Defect[] = [
 # Root Cause Analysis (Internal)
 
 **Machine ID**: CMP-X09 (Fab 12A)
+
 **Recipe**: POLY-800-REV3
+
 **Process Parameters**:
 - Down Force: 5.2 psi (Out of Spec > 5.0)
 - Slurry Flow: 200 ml/min

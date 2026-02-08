@@ -35,7 +35,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, rightPanel }) => {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <ScanOutlined style={{ fontSize: '24px', color: '#1890ff' }} />
                     <Title level={4} style={{ color: 'white', margin: 0 }}>
-                        Visual Defect Analysis Agent
+                        Defect Analysis & Safety Agent
                     </Title>
                 </div>
 
@@ -46,6 +46,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, rightPanel }) => {
                         unCheckedChildren="Equip Eng"
                         checked={userRole === 'YIELD_ENG'}
                         onChange={(checked) => setUserRole(checked ? 'YIELD_ENG' : 'EQUIPMENT_ENG')}
+                        style={{ backgroundColor: userRole === 'YIELD_ENG' ? '#75b008ff' : '#8B0000' }}
                     />
                     <Avatar icon={<UserOutlined />} style={{ marginLeft: '12px' }} />
                 </div>
