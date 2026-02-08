@@ -144,9 +144,11 @@ const SafetyGuardDiff: React.FC = () => {
                                     )}
                                     <ReactMarkdown
                                         components={{
-                                            h1: ({ node, ...props }) => <Text strong style={{ fontSize: '18px', display: 'block', marginBottom: '8px' }} {...props} />,
-                                            h2: ({ node, ...props }) => <Text strong style={{ fontSize: '16px', display: 'block', marginBottom: '4px' }} {...props} />,
-                                            p: ({ node, ...props }) => <p style={{ fontSize: '14px', lineHeight: '1.6', marginBottom: '8px', whiteSpace: 'pre-line' }} {...props} />,
+                                            h1: ({ node, ...props }) => <Text strong style={{ fontSize: '18px', display: 'block', marginBottom: '12px', marginTop: '4px' }} {...props} />,
+                                            h2: ({ node, ...props }) => <Text strong style={{ fontSize: '16px', display: 'block', marginBottom: '8px', marginTop: '4px' }} {...props} />,
+                                            p: ({ node, ...props }) => <p style={{ fontSize: '14px', lineHeight: '1.6', marginBottom: '12px', whiteSpace: 'pre-line' }} {...props} />,
+                                            ul: ({ node, ...props }) => <ul style={{ marginBottom: '12px', paddingLeft: '20px' }} {...props} />,
+                                            li: ({ node, ...props }) => <li style={{ fontSize: '14px', marginBottom: '4px' }} {...props} />,
                                         }}
                                     >
                                         {finalContent}

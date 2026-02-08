@@ -26,7 +26,7 @@ This project is strictly a **Proof of Concept (PoC)** designed to demonstrate so
 
 ## 🏗️ Use Case & Scenario
 
-In a modern semiconductor Fab, data security is as critical as yield. This project simulates a real-world scenario where high-resolution **SEM (Scanning Electron Microscope)** defect images are analyzed by AI, but the sensitive process parameters must be protected based on the user's role.
+In a modern semiconductor Lab, data security is as critical as yield. This project simulates a real-world scenario where high-resolution **SEM (Scanning Electron Microscope)** defect images are analyzed by AI, but the sensitive process parameters must be protected based on the user's role.
 
 ### Role Definitions
 

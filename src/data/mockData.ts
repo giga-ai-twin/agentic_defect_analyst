@@ -29,17 +29,17 @@ export const MOCK_DEFECTS: Defect[] = [
             originalContent: `
 # Root Cause Analysis (Internal)
 
-**Machine ID**: CMP-X09 (Fab 12A)
+**Machine ID**: SUN-MOON-LAKE-01 (Lab Area X)
 
-**Recipe**: POLY-800-REV3
+**Recipe**: HELLO-588-REV666
 
 **Process Parameters**:
-- Down Force: 5.2 psi (Out of Spec > 5.0)
-- Slurry Flow: 200 ml/min
+- Down Force: 999 psi (Out of Spec > 1.68)
+- Slurry Flow: 500 ml/min
 - Pad Life: 85%
 
 **Assessment**:
-The scratch is likely caused by agglomerated slurry particles due to high down force on CMP-X09. Recommend immediate PM.
+The scratch is likely caused by agglomerated slurry particles due to high down force on SUN-MOON-LAKE-01. Recommend immediate PM.
       `,
             redactedContent: `
 # Root Cause Analysis (General)
@@ -59,7 +59,7 @@ The scratch is likely caused by agglomerated slurry particles due to process par
                     id: 'log-1',
                     timestamp: '2026-02-06T08:31:00Z',
                     action: 'FILTERED',
-                    details: 'Masked Machine ID "CMP-X09" for Yield Engineering Group',
+                    details: 'Masked Machine ID for Yield Engineering Group',
                 },
                 {
                     id: 'log-2',
@@ -97,14 +97,14 @@ The scratch is likely caused by agglomerated slurry particles due to process par
             originalContent: `
 # Particle Analysis
 
-**Location**: Edge exclusion zone (2mm).
-**Source**: Likely Photo-Bay 3 (Track 2).
+**Location**: Edge exclusion zone.
+**Source**: Likely Litho Bay (Track X).
 **Composition**: Carbon-rich.
 
 **Action**: Verify filter efficiency on Track 2.
       `,
             redactedContent: `
-# Particle Analysis
+# Particle Analysis (Anonymized)
 
 **Location**: Edge exclusion zone.
 **Source**: Litho Area.
