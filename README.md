@@ -12,6 +12,15 @@ A production-grade **Full-Stack AI Agent** designed for semiconductor manufactur
 
 <img width="1269" height="758" alt="image" src="https://github.com/user-attachments/assets/b24ed7c2-324d-4095-9567-b3a25e47813f" />
 
+## 🛡️ Compliance & Synthetic Data Disclaimer
+
+This project is strictly a **Proof of Concept (PoC)** designed to demonstrate software architecture and GenAI capabilities in a semiconductor context. To ensure full compliance with Intellectual Property (IP) protection standards:
+
+* **100% Synthetic Data**: All SEM (Scanning Electron Microscope) images displayed in this application are **procedurally generated client-side** using HTML5 Canvas (`src/utils/imageGenerator.ts`). No real wafer images or proprietary datasets were used, uploaded, or processed.
+* **Fictional Scenarios**: All defect metrics, recipe names, and machine IDs are entirely fictional and do not correspond to any actual foundry processes.
+* **Zero Data Exfiltration**: In this demo environment, data is processed via ephemeral API calls. In a real-world production deployment, this architecture mandates **On-Premise (Air-gapped)** execution using NVIDIA NIM containers to ensure no telemetry leaves the factory network.
+
+> **Note for Everyone**: This repository demonstrates the ability to build secure, enterprise-grade AI applications while strictly adhering to non-disclosure agreements (NDAs) and trade secret regulations.
 
 ---
 
