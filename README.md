@@ -1,66 +1,93 @@
-# Visual Defect Analysis & Root Cause Agent
+# 🔬 Visual Defect Analysis Agent (VDA-Agent)
 
-**A Production-Grade React Application for Semiconductor Defect Analysis**
+[![NVIDIA NIM](https://img.shields.io/badge/Powered%20By-NVIDIA%20NIM-76B900?style=for-the-badge&logo=nvidia)](https://build.nvidia.com)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
 
-This project demonstrates a modern, high-performance dashboard for analyzing wafer defects using **Cosmos 2** (Visual Reasoning) and **Llama-3.1-Nemotron-Safety-Guard** (Data Security). It is designed to simulate a real-world scenario in a high-security semiconductor fabrication environment (e.g., TSMC, NVIDIA).
-
-## 🚀 Key Features
-
-*   **Role-Based Access Control (RBAC)**: Simulate "Equipment Engineer" vs. "Yield Engineer" views to demonstrate data access governance.
-*   **Deep Zoom Viewer**: Interact with high-resolution SEM (Scanning Electron Microscope) images using pan and zoom capabilities.
-*   **AI Visual Reasoning**: "Cosmos 2" simulated output provides physical descriptions and bounding box annotations of defects.
-*   **Safety Guard**: "Llama-3.1-Nemotron" simulated output intercepts and redacts sensitive machine parameters (e.g., process recipes) based on user clearance.
-*   **Diff View**: A visual comparison tool showing exactly what information was redacted by the Safety Guard.
-
-## 🛠️ Tech Stack
-
-*   **Frontend Framework**: React 18+ (Vite)
-*   **Language**: TypeScript (Strict Typing)
-*   **UI Library**: Ant Design (Enterprise Standard)
-*   **State Management**: Zustand
-*   **Specialized Components**:
-    *   `react-zoom-pan-pinch` (Deep Zoom)
-    *   `react-markdown` (Report Rendering)
-    *   Custom Diff Viewer (Security Audit)
-
-## 📦 How to Run
-
-### 1. Backend (Python/FastAPI)
-*   **Install Python Dependencies**:
-    ```bash
-    pip install fastapi uvicorn python-multipart requests python-dotenv httpx
-    ```
-*   **Start Backend Server**:
-    ```bash
-    python -m uvicorn backend.main:app --reload --port 8000
-    ```
-    *The backend will run at `http://localhost:8000`*
-
-### 2. Frontend (React/Vite)
-*   **Install Node Dependencies**:
-    ```bash
-    npm install
-    ```
-*   **Start Frontend Dev Server**:
-    ```bash
-    npm run dev
-    ```
-    *Open `http://localhost:5173` in your browser.*
+A production-grade **Full-Stack AI Agent** designed for semiconductor manufacturing inspection. This system demonstrates the integration of **Visual Language Models (VLMs)** for defect reasoning and **LLM Safety Guardrails** for secure, role-based data redaction.
 
 ---
 
-## 🏛️ Architecture Decision Record (ADR)
+## 🏗️ Architecture & Scenario
 
-> **Context**: Designing a secure, high-interactivity defect analysis dashboard for semiconductor manufacturing.
+In a modern semiconductor Fab, data security is as critical as yield. This project simulates a real-world scenario where high-resolution **SEM (Scanning Electron Microscope)** defect images are analyzed by AI, but the sensitive process parameters must be protected based on the user's role.
 
-### 1. Client-Side Rendering (CSR) via React SPA
-*   **Decision**: Adopted Single Page Application (SPA) architecture using Vite + React.
-*   **Why**: The application heavily relies on complex DOM manipulations (Deep Zoom, Interactive Annotations) which require low-latency user interaction. SEO is irrelevant for this internal enterprise tool. CSR provides the snappiest experience for image-heavy workflows.
+### The Problem
+*   **Equipment Engineers** need absolute details to fix machines.
+*   **Yield Engineers** need to see trends but should not access "Secret Sauce" recipe parameters (IP Protection).
 
-### 2. Security via Safety Guard (Backend-First Design)
-*   **Decision**: Security logic is modeled as a backend "Safety Guard" layer (simulated here via mock API responses), not just frontend hiding.
-*   **Why**: Frontend CSS hiding (`display: none`) is widely considered a security vulnerability ("Security via Obscurity"). This demo illustrates that the *data payload itself* is modified/redacted by the model intervention layer before even reaching the client for restricted roles. The frontend's role is merely to visualize this redaction (Diff View), not to enforce it.
+### The Solution: Agentic Redaction
+Instead of static masks, this system uses **NVIDIA Llama 3 (70B/405B)** via NIM to intelligently identify and redact PII/IP data within Root Cause Analysis (RCA) reports dynamically.
 
-### 3. TypeScript for Type Safety
-*   **Decision**: Strict TypeScript enforcement.
-*   **Why**: In the semiconductor domain, data precision is paramount. Type safety prevents category errors (e.g., confusing `DefectID` with `WaferID`) and ensures maintainability of the complex data structures returned by AI models.
+---
+
+## 🛠️ Tech Stack
+
+### Frontend (User Interface)
+*   **React 18 + TypeScript**: Type-safe component architecture.
+*   **Vite**: Ultra-fast build tool and dev server.
+*   **Ant Design (AntD)**: Enterprise-standard UI framework.
+*   **React-Zoom-Pan-Pinch**: High-performance Deep Zoom engine for SEM imagery.
+*   **Zustand**: Lightweight state management for RBAC (Role-Based Access Control).
+
+### Backend (AI Middleware)
+*   **FastAPI (Python)**: High-performance asynchronous API server.
+*   **NVIDIA NIM Integration**:
+    *   **Vision-Language Model**: Simulates/Connects to **Cosmos 2** for visual reasoning.
+    *   **Security Guardrail**: Real-time redaction using **Llama-3.1-70b-instruct**.
+*   **Httpx**: Asynchronous HTTP client for low-latency AI inference calls.
+
+### Image Synthesis
+*   **Advanced SVG Generators**: Custom-built engine to simulate SEM characteristics (Electron charging effects, fractal grain noise, and technical metadata bars).
+
+---
+
+## 👥 Role Definitions
+
+| Role | Access Level | Data Display | Use Case |
+| :--- | :--- | :--- | :--- |
+| **Equipment Eng** | **Full (Normal)** | Raw RCA Reports | Inspecting specific machine values to perform maintenance. |
+| **Yield Eng** | **Restricted** | **AI-Redacted** | Analyzing factory-wide trends without exposure to IP-sensitive recipes. |
+
+---
+
+## 🚀 Getting Started
+
+### 1. Prerequisites
+*   Node.js (v18+)
+*   Python (3.11+)
+*   NVIDIA NIM API Key ([Get one here](https://build.nvidia.com))
+
+### 2. Backend Setup
+```bash
+# Navigate to project root
+cd agentic-defect-analyst
+
+# Install dependencies
+pip install fastapi uvicorn httpx python-dotenv
+
+# Run the server
+python backend/main.py
+```
+*Note: The server defaults to port 8000.*
+
+### 3. Frontend Setup
+```bash
+# In a new terminal
+npm install
+npm run dev
+```
+*Open `http://localhost:5173` to view the agent.*
+
+---
+
+## 📸 Key Features & Screenshots
+
+*   **SEM Deep Zoom**: Inspect at the nanometer scale with simulated electron-beam artifacts.
+*   **Live AI Redaction**: Watch the report transform in real-time when switching roles, powered by Llama 3.
+*   **Synthetic Data Engine**: Realistic wafer defect generation for zero-dependency testing.
+
+---
+
+## 📝 License
+MIT License. Created for the NVIDIA NIM & Advanced Agentic Coding Showcase.
