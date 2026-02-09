@@ -75,7 +75,17 @@ const SafetyGuardDiff: React.FC = () => {
     return (
         <div style={{ padding: '16px', height: '100%', display: 'flex', flexDirection: 'column' }}>
             <div style={{ marginBottom: '16px' }}>
-                <Title level={5}>Defect Analysis Report</Title>
+                <Title level={5} style={{ marginBottom: '4px' }}>Defect Analysis Report</Title>
+                <div style={{ marginBottom: '8px' }}>
+                    <Text type="secondary" italic style={{ fontSize: '13px', display: 'block' }}>
+                        {activeTab === '1'
+                            ? (userRole === 'EQUIPMENT_ENG'
+                                ? "Full Data View: Unrestricted access to raw machine telemetry and internal recipe parameters."
+                                : "Protected Data View: AI-driven redaction of sensitive IP for restricted engineering roles.")
+                            : "Safety Guard Audit: side-by-side verification of AI redaction logic and security policy compliance."
+                        }
+                    </Text>
+                </div>
                 <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                     <Tag
                         style={{
@@ -128,7 +138,7 @@ const SafetyGuardDiff: React.FC = () => {
                                                     NVIDIA NIM Security Filter
                                                 </Text>
                                                 <Text type="secondary" style={{ fontSize: '14px', fontWeight: '500' }}>
-                                                    Scrubbing sensitive data with Llama-3.1-70B-Instruct...
+                                                    Scrubbing proprietary IP and sensitive parameters using Llama-3.1-70B...
                                                 </Text>
                                             </div>
                                             {/* Scanning Line Animation */}
